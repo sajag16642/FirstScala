@@ -41,12 +41,20 @@ object FirstScala extends App {
   /*
   Prime Number
    */
-  def isPrime(n: Int): Boolean =
-    true
+  def isPrime(n: Int): Boolean = {
+    @tailrec
+    def isPrimeUntil(t: Int, acc: Boolean): Boolean =
+      if(t<=1) acc
+      else isPrimeUntil(t-1,acc && n%t!=0)
+
+    isPrimeUntil(n/2,true)
+  }
 
 
-  println(sum(2, 3))
-  println(factorial(5000))
-  println(repeatedFunction("Hello", 3, "Hello"))
-  println(fibonacci(3, 1, 1))
+//  println(sum(2, 3))
+//  println(factorial(5000))
+//  println(repeatedFunction("Hello", 3, "Hello"))
+//  println(fibonacci(3, 1, 1))
+  println(isPrime(2003))
+  println(isPrime(629))
 }
