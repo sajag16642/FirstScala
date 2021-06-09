@@ -50,6 +50,11 @@ object FirstScala extends App {
     isPrimeUntil(n/2,true)
   }
 
+  val concatenate:(String,String)=>String = new Function2[String,String,String] {
+    override def apply(v1: String, v2: String): String = v1+v2
+  }
+
+
 
 //  println(sum(2, 3))
 //  println(factorial(5000))
@@ -57,4 +62,5 @@ object FirstScala extends App {
 //  println(fibonacci(3, 1, 1))
   println(isPrime(2003))
   println(isPrime(629))
+  println(concatenate("Hello ","Scala"))
 }
