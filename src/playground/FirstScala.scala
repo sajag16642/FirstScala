@@ -54,6 +54,22 @@ object FirstScala extends App {
     override def apply(v1: String, v2: String): String = v1+v2
   }
 
+  def toCurry[A,B,C](f:(A,B)=>C):A=>B=>C = {
+    x => y => f(x,y)
+  }
+
+  def fromCurry[A,B,C](f:A=>B=>C):(A,B)=>C = {
+    (x,y)=>f(x)(y)
+  }
+
+  def compose[A,B,C](f:B=>A, g:B=>C):B=>A ={
+    x=>f(g(x))
+  }
+
+  def andThen[A,B,C](f:A=>B, g:B=>C):A=>C ={
+    x=>g(f(x))
+  }
+
 
 
 //  println(sum(2, 3))
