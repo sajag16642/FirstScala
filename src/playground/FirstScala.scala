@@ -62,7 +62,7 @@ object FirstScala extends App {
     (x,y)=>f(x)(y)
   }
 
-  def compose[A,B,C](f:B=>A, g:B=>C):B=>A ={
+  def compose[A,B,C](f:C=>A, g:B=>C):B=>A ={
     x=>f(g(x))
   }
 
