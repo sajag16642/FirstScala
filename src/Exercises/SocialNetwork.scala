@@ -1,6 +1,8 @@
 package org.scala.practice
 package Exercises
 
+import scala.annotation.tailrec
+
 /**
  * @author sajag16642
  */
@@ -10,6 +12,7 @@ object SocialNetwork extends App {
   }
 
   def remove(network: Map[String,Set[String]], person: String): Map[String,Set[String]]={
+      @tailrec
       def unfriendEach(remFriends: Set[String], remNetwork: Map[String,Set[String]]): Map[String,Set[String]] = {
         if(remFriends.isEmpty) remNetwork
         else unfriendEach(remFriends.tail,unfriend(remNetwork,person,remFriends.head))
