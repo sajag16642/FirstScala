@@ -70,13 +70,33 @@ object FirstScala extends App {
     x=>g(f(x))
   }
 
+  trait Expr
+
+  case class Number(n: Int) extends Expr
+  case class Sum(e1: Expr, e2: Expr) extends Expr
+  case class Prod(e1: Expr, e2: Expr) extends Expr
+
+  def show(e: Expr): String = e match {
+    case Number(n) => s"$n"
+    case Sum(e1, e2) => show(e1)+"+"+show(e2)
+    case Prod(e1, e2) => {
+      def showParentheses(expr: Expr): String = expr match {
+        case Number(_) => show(expr)
+        case Prod(_, _) => show(expr)
+        case _ => "("+show(expr)+")"
+      }
+      showParentheses(e1)+"*"+showParentheses(e2)
+    }
+  }
 
 
 //  println(sum(2, 3))
 //  println(factorial(5000))
 //  println(repeatedFunction("Hello", 3, "Hello"))
 //  println(fibonacci(3, 1, 1))
-  println(isPrime(2003))
-  println(isPrime(629))
-  println(concatenate("Hello ","Scala"))
+//  println(isPrime(2003))
+//  println(isPrime(629))
+//  println(concatenate("Hello ","Scala"))
+  println(show(Sum(Number(2),Number(3))))
+  println(show(Prod(Sum(Number(2),Number(1)),Number(3))))
 }
